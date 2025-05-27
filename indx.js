@@ -75,7 +75,7 @@ const SubmitBtn = document.getElementById("bayad");
 const subNotif = document.getElementById("subNotif")
 const payNotif = document.getElementById("payNotif")
 
-
+//submit function
 SubmitBtn.onclick =  function (){
     if(subs.checked){
         subNotif.textContent = 'Thanks for subscribing!';
