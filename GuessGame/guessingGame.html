@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Bootstrap/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Document</title>
+      
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background-color: #1f1f1f;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    #attempt {
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #f44336;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .outputContainer {
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      background-color: #2a2a2a;
+      
+      border-radius: 0.75rem;
+    }
+
+    #inputGuess {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #2a2a2a;
+      
+      font-size: 1rem;
+    }
+   
+    .livesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #f44336;
+    }
+
+    .resultContainer{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+      height: 48px;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #2a2a2a;
+      color: #fff;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2 class="title">Guess Me</h2>
+        <h1 style="font-weight: bolder; margin-bottom: 2px;" id="resultShow" class="resultContainer"></h1>
+        <div class="livesContainer">
+            <p style="margin-bottom: 0px;" id="greet"></p>
+            <div style="display: flex; flex-direction: row;"> 
+            <p>❤️</p>
+            <p style="margin-left: 5px;" id="attempt">5</p>
+            </div>
+       </div>
+        <div class="container">
+
+            <input id="inputGuess" type="text" placeholder="Enter Your Guess">
+            <button id="btn" for="inputGuess" class="btn btn-outline-warning">Guess</button>
+            <button id="resetBtn" class="btn btn-outline-danger">Reset</button>
+
+        </div>
+    </div>
+
+    <script>
+        const resetBtn = document.getElementById("resetBtn");
+        const result = document.getElementById("resultShow");
+        const lives = document.getElementById("attempt");
+        const userInput = document.getElementById("inputGuess");
+        const submitBtn = document.getElementById("btn");
+        const resultGreet = document.getElementById("greet");
+        
+        
+        let randomNum = Math.floor(Math.random() * 50) + 1;
+        let attempt = 5;
+
+        submitBtn.onclick = function(){
+            const guess = parseInt(userInput.value);
+
+            if(attempt <= 0){
+                result.textContent = "Game Over!";
+                return;
+            }
+                else if(isNaN(guess)){
+                    result.textContent = "Invalid Input, numbers Only!"; result.style.color = "red";  
+                }
+
+                else if(guess === randomNum){
+                    result.textContent = `${guess} is correct`;
+                    result.style.color = "green";
+                    resultGreet.textContent = `Congrats! Tag-naans buang oh`;
+                    resultGreet.style.color = 'green'
+                }
+                else {
+                  if(guess > randomNum){
+                    result.textContent = `${guess} is to high`; result.style.color = "red";
+                    resultGreet.textContent = 'Please try again!'; resultGreet.style.color = 'red'
+                  }
+                  else{
+                    result.textContent = `${guess} is to low`; result.style.color = "red";
+                    resultGreet.textContent = 'Please try again!'; resultGreet.style.color = 'red'
+                  }
+                  setTimeout(() =>{
+                    resultGreet.textContent = '';
+                    resultGreet.style.color = '';
+                  },3000);
+
+                  attempt--;
+                  lives.textContent = attempt;     
+                }
+                //Shows game over if attemps is already zero
+                if(attempt === 0 && guess !== randomNum){
+                result.textContent = "Game Over!";
+                
+            }
+        }
+        // reset button functionality
+       resetBtn.onclick = function(){
+            randomNum = Math.floor(Math.random() * 50) + 1;
+            result.textContent = '';
+            resultGreet.textContent = '';
+            resultGreet.style.color = '';
+            attempt = 5;
+            lives.textContent = attempt;
+            result.style.color = '';
+            userInput.value = '';
+        };
+        
+       
+       
+    </script>
+</body>
+</html>
