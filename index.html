@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
     <title>Document</title>
     <style>
         body{
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            justify-content: start;
             height: 100vh;
         }
 
+        .rowContainer{
+            display: flex;
+            flex-direction: row;
+            height: 400px;
+            width: auto;
+        }
         .card{
             margin: 20px;
             display: flex;
@@ -24,62 +30,143 @@
             width: 500px;
             height: 300px;
         }
-        .btn{
-            padding: 5px 10px;
-            background-color: rgb(169, 169, 169);
-            border: none;
-            border-radius: 5px;
-            box-shadow: 3px 2px 8px rgba(0, 0, 0, 0.3);
+        
+        .inputStyle{
+            width: 150px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .subscription-card {
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .subscription-card h3,
+        .subscription-card h4 {
+            text-align: center;
+            margin-bottom: 20px;
+         }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .payment-options label {
+            margin-left: 5px;
+        }
+        .names{
+            width: 150px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1 id="bubu">0</h1>
-        
+    <div class="rowContainer">
+        <div class="card">
+            <h1 id="bubu">0</h1>
 
-        <div class="buttons">
-            <button class="btn" id="increase">+</button>
-            <button class="btn" id="reset">Reset</button>
-            <button class="btn" id="decrease">-</button>
+            <div class="buttons">
+                <button class="btn btn-primary" id="increase">+</button>
+                <button class="btn btn-primary" id="reset">Reset</button>
+                <button class="btn btn-primary" id="decrease">-</button>
+            </div>
         </div>
-    </div>
     
-    <div class="card">
-        <h3>Enter your'e guess</h3>
-        <h2 id="output">0</h2>
-        <h3 id="greet"></h3>
+        <!-- Guess simple Game -->
+        <div class="card">
+            <div><h3 style="font-size: medium;">Enter your'e guess(0-50)</h3></div>
+            <h3 style="font-size: medium; font-weight:lighter;" id="greet"></h3>
+            <h2 id="output">0</h2>
 
-        <input type="text" id="inputGuess">
-        <button class="btn" id="submitGuess">Guess</button>
-        
-    </div>
-
-
-    <div class="card" >
-
-        <h3 id="subNotif"></h3>
-        <h4 id="payNotif"></h4>
-        <div style="margin-bottom:10px ;"> 
-            <input type="radio" id="subs">
-            <label for="subs">Subscribe manigga</label>
+            <input class="inputStyle" type="text" id="inputGuess" placeholder="Enter Guess">
+            <button style="margin-top: 10px;" class="btn btn-outline-success" id="submitGuess">Guess</button>
+            <button style="margin-top: 10px;" class="btn btn-outline-danger" id="resetGuess">Reset</button>
+            
         </div>
-        <!-- payment -->
-         <div style="margin-bottom:10px ;">
-            <input type="radio" id="Visa" name="pay"><label for="Visa">visa</label>
-            <input type="radio" id="CashG" name="pay"><label for="CashG">cashG</label>
-            <input type="radio" id="Paypal" name="pay"><label for="Paypal">paypal</label> 
-         </div>
+
+
+        <div class="card">
+            <h3 id="subNotif">Subscribe Now</h3>
+            <h4 id="payNotif"></h4>
+
+            <!-- Subscribe Option -->
+            <div class="radio-group">
+            <div>
+                <input type="radio" id="subs" name="subOption">
+                <label for="subs">Subscribe manigga</label>
+            </div>
+            </div>
+
+            <!-- Payment Options -->
+            <div class="payment-options">
+            <div>
+                <input type="radio" id="Visa" name="pay">
+                <label for="Visa">Visa</label>
+            </div>
+            <div>
+                <input type="radio" id="CashG" name="pay">
+                <label for="CashG">CashG</label>
+            </div>
+            <div>
+                <input type="radio" id="Paypal" name="pay">
+                <label for="Paypal">PayPal</label>
+            </div>
+            </div>
+
+            <button class="btn btn-outline-primary" id="bayad">Submit</button>
+        </div>
+
+
         
-        <button id="bayad">Submit</button>
     </div>
 
-    <div class="card">
-        <h3 id="countN">0</h3>
-        <input type="text" id="NGALAN"><label for="NGALAN">Input a String</label>
-        <button id="subString">Count</button>
+
+    <!-- next row -->
+    <div class="rowContainer">
+        <!-- Count number of char -->
+        <div class="card">
+            <h3 id="countN">0</h3>
+            <input class="inputStyle" type="text" id="NGALAN" placeholder="Input Name">
+            <button style="margin-top: 10px;" class="btn btn-outline-primary" id="subString">Count</button>
+        </div>
+
+        <!-- next shit here -->
+         <div class="card">
+            <input style="margin-bottom: 10px;" type="text" id="inptFullname" placeholder="Enter Fullname"> 
+            <h3 class="names" id="first"></h3>
+            <h3 class="names" id="middle"></h3>
+            <h3 class="names" id="last"></h3>
+
+            <button class="btn btn-outline-primary" id="pasa">Submit</button>
+
+         </div>
     </div>
+
     <script src="indx.js"></script>
-    <script src="new.js"></script>
+
 </body>
 </html>
