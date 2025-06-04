@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Document</title>
     <style>
         body{
+            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: start;
@@ -82,6 +84,16 @@
             outline: none;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
+        .inputCon{
+            height: 40px;
+            width: 250px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
     </style>
 </head>
 <body>
@@ -91,8 +103,8 @@
 
             <div class="buttons">
                 <button class="btn btn-primary" id="increase">+</button>
-                <button class="btn btn-primary" id="reset">Reset</button>
-                <button class="btn btn-primary" id="decrease">-</button>
+                <button class="btn btn-primary" id="resetB">Reset</button>
+                <button class="btn btn-warning" id="decrease">-</button>
             </div>
         </div>
     
@@ -144,7 +156,7 @@
         
     </div>
 
-
+    <hr>
     <!-- next row -->
     <div class="rowContainer">
         <!-- Count number of char -->
@@ -160,12 +172,27 @@
             <h3 class="names" id="first"></h3>
             <h3 class="names" id="middle"></h3>
             <h3 class="names" id="last"></h3>
-
             <button class="btn btn-outline-primary" id="pasa">Submit</button>
 
          </div>
-    </div>
 
+         <div class="card">
+            <h2 style="font-weight: bold; font-size: larger;">Temperature Convert</h2>
+            <input id="inputCon" type="text" class="inputCon" placeholder="Enter number to convert">
+            <div style="display: flex; flex-direction: column; margin:10px 1px; ">
+                <h2 id="outputTemp" class="inputCon"></h2>    
+                <div style="display: flex; flex-direction: row;">
+                    <input type="radio" id="toF" name="temp"> <label for="toF" style="margin-left: 5px;">Convert Celsius to Fahrenheit</label>
+                </div>
+                <div style="display: flex; flex-direction: row;">
+                    <input type="radio" id="toC" name="temp"> <label for="toF" style="margin-left: 5px;">Convert Fahrenheit to Celcius</label>
+                </div>
+            </div>
+            <button id="tempSubmit" class="btn btn-outline-warning">Submit</button>
+            
+         </div>
+    </div>
+    
     <script src="indx.js"></script>
 
 </body>

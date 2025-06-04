@@ -4,21 +4,21 @@ let count = 0;
 
 const increaseBtn = document.getElementById("increase");
 const decreaseBtn = document.getElementById("decrease");
-const resetBtn = document.getElementById("reset");
+const resetBtn = document.getElementById("resetB");
 const value = document.getElementById("bubu");
 
 increaseBtn.onclick = increase;
-resetBtn.onclick = reset;
 decreaseBtn.onclick = decrease;
+resetBtn.onclick = function(){
+    count = 0;
+    value.textContent = count;
+};
 
 function increase(){
     count++;
     value.textContent = count;
-}
-function reset(){
-    count = 0;
-    value.textContent = count;
-}
+};
+
 function decrease(){
     if(count==0){
         window.alert(`Cannot decrease`);
@@ -149,3 +149,29 @@ pasaBtn.onclick = function() {
     lName.textContent = names.last;
 };
 
+
+
+// ===================================================================================================
+
+const tempInput = document.getElementById("inputCon");
+const convertF_Btn = document.getElementById("toF");
+const convertC_Btn = document.getElementById("toC");
+const outputTemp = document.getElementById("outputTemp");
+const tempSubmitBtn = document.getElementById("tempSubmit");
+
+tempSubmitBtn.onclick = function(){
+    let tempValue = Number(tempInput.value);
+    if(isNaN(tempValue)){
+        outputTemp.textContent = 'Input a number';
+        return;
+    }
+    else if(convertF_Btn.checked){
+        outputTemp.textContent = `${tempValue}°C is ${(tempValue * 9/5) + 32}°F`;
+    }
+    else if(convertC_Btn.checked){
+        outputTemp.textContent = `${tempValue}°F is ${(tempValue - 32) * 5/9}°C`;
+    }
+    else{
+        outputTemp.textContent = 'Select a conversion type';
+    }
+}
